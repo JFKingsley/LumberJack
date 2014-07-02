@@ -1,27 +1,26 @@
 'use strict';
 
 var raven      = require('raven'),
-    newWinston = new require('winston').Logger()
+    winston    = require('winston');
 
-var LumberJack = function (sentry, winston, options) {
+var LumberJack = function (sentry, suppliedWinston, options) {
   
     this.sentry = new raven.Client(sentry, {logger: 'LumberJack'});
   
-    if(winston === undefined) {
-        this.winston = newWinston;
+    if(suppliedWinston === undefined) {
+        this.winston = new (winston.Logger);
     }else{
-        this.winston = winston;
+        this.winston = suppliedWinston;
     }
 
     this.options = options;
 
     if(this.options.logFile !== undefined) {
-        this.winston.add(newWinston.transports.File, {filename: this.options.logFile});
+        this.winston.add(winston.transports.File, {filename: this.options.logFile});
     }
 
     if(this.options.prefix !== undefined) {
-        this.winston.remove(newWinston.transports.Console);
-        this.winston.add(newWinston.transports.Console, {
+        this.winston.add(winston.transports.Console, {
             json : false,
             timestamp : this.options.timestamp,
             label: this.options.prefix
