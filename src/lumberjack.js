@@ -55,7 +55,7 @@ LumberJack.prototype.getSentry = function() {
 
 LumberJack.prototype.log = function(logLevel, message, extra) {
   if(typeof message !== 'string')
-      return;
+      return new Error('LumberJack: Failed to use non-string object for log message.');
 
   var color           = 'grey',
       winstonLogLevel = logLevel;
