@@ -1,6 +1,6 @@
 var LumberJack = require('../main.js');
 
-var lumberjack = new LumberJack('{{ Sentry DSN }}', undefined, {logFile: './testLogfile.log', prefix: 'ProDaemon', timestamp: false, colors: true});
+var lumberjack = new LumberJack('{{ Sentry DSN }}', undefined, {logFile: './testLogfile.log', prefix: 'Lumberjack', timestamp: false, colors: true});
 
 lumberjack.info('This is a info log');
 
