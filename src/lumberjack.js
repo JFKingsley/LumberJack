@@ -1,7 +1,7 @@
 'use strict';
 
 var raven      = require('raven'),
-    newWinston = require('winston')
+    newWinston = new require('winston').Logger()
 
 var LumberJack = function (sentry, winston, options) {
   
