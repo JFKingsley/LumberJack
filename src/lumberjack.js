@@ -7,7 +7,7 @@ var LumberJack = function (sentry, winston, options) {
   
     this.sentry = new raven.Client(sentry, {logger: 'LumberJack'});
   
-    if(winston == undefined) {
+    if(winston === undefined) {
         this.winston = newWinston;
     }else{
         this.winston = winston;
@@ -60,37 +60,41 @@ LumberJack.prototype.log = function(logLevel, message, extra) {
   var color           = 'grey',
       winstonLogLevel = logLevel;
 
-  if(this.options.colors == true) {
+  if(this.options.colors === true) {
     switch (logLevel) {
         case 'info':
             color = 'green';
-            break;
+        break;
 
         case 'log':
             color = 'green';
-            break;
+        break;
 
         case 'debug':
             color = 'cyan';
-            break;
+        break;
 
         case 'warn':
             color = 'yellow';
-            break;
+        break;
 
         case 'error':
             color = 'red';
-            break;
+        break;
+
+        default:
+            color = 'grey';
+        break;
     }
   }
 
-  if(logLevel == 'debug')
+  if(logLevel === 'debug')
       winstonLogLevel = 'info';
 
   if(this.winston !== undefined)
         this.winston.log(winstonLogLevel, message[color]);
   if(this.sentry !== undefined) 
-        if(logLevel == 'error')
+        if(logLevel === 'error')
             this.sentry.captureError(new Error(message), {level: logLevel, extra: extra});
         else
             this.sentry.captureMessage(message, {level: logLevel, extra: extra});
