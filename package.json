@@ -1,0 +1,26 @@
+{
+  "name": "lumberjack",
+  "version": "0.1.0",
+  "description": "An all-in-one logging system for Node.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JFKingsley/lumberjack"
+  },
+  "keywords": [
+    "logging",
+    "winston",
+    "console.log"
+  ],
+  "author": "JFKingsley",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "colors": "^0.6.2",
+    "raven": "^0.7.0",
+    "winston": "^0.7.3"
+  }
+}
