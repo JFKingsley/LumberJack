@@ -90,13 +90,22 @@ LumberJack.prototype.log = function(logLevel, message, extra) {
   if(logLevel === 'debug')
       winstonLogLevel = 'info';
 
-  if(this.winston !== undefined)
-        this.winston.log(winstonLogLevel, message[color]);
+  if(logLevel === 'warn')
+      logLevel = 'warning';
+
+  this.winston.log(winstonLogLevel, message[color]);
+
+  var sentryMsg  = require('strip-ansi')(message),
+      sentryBody = {level: logLevel};
+
+  if(extra !== undefined)
+      sentryBody = {level: logLevel, extra: extra};
+
   if(this.sentry !== undefined) 
         if(logLevel === 'error')
-            this.sentry.captureError(new Error(message), {level: logLevel, extra: extra});
+            this.sentry.captureError(new Error(sentryMsg), sentryBody);
         else
-            this.sentry.captureMessage(message, {level: logLevel, extra: extra});
+            this.sentry.captureMessage(sentryMsg, sentryBody);
 };
 
 module.exports = LumberJack;
