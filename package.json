@@ -1,6 +1,6 @@
 {
   "name": "lumberjack",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An all-in-one logging system for Node.",
   "main": "main.js",
   "scripts": {
