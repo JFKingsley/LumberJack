@@ -99,7 +99,13 @@ LumberJack.prototype.log = function(logLevel, message, extra) {
       sentryBody = {level: logLevel};
 
   if(extra !== undefined)
-      sentryBody = {level: logLevel, extra: extra};
+        sentryBody['extra'] = extra;
+  else
+        sentryBody['extra'] = {};
+  
+  if(this.options.stackTrace) {
+      sentryBody['extra']['Stack Trace'] = (new Error().stack);
+  }
 
   if(this.sentry !== undefined) 
         if(logLevel === 'error')

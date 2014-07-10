@@ -34,3 +34,4 @@ And done! It's that simple.
 | logfile            | String (File Path)  |
 | timestamp          | Boolean             |
 | colors             | Boolean             |
+| stackTrace         | Boolean             |
