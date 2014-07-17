@@ -18,9 +18,13 @@ var logFileLocation = './lumberjack.log';
 var sentry = undefined;
 var prefix = 'Lumberjack';
 
-var lumberjack = new LumberJack(DSN, sentry, {logFile: logFileLocation, prefix: prefix, timestamp: false, colors: true});
+var lumberjack = new LumberJack(DSN, sentry, {logFile: logFileLocation, prefix: prefix, timestamp: false, colors: true, ignoreLevelSentry: ['debug']});
 
 lumberjack.info('This is a info log');
+
+lumberjack.debug('This is a debug log', {withALittleExtra: 'data!'}, function(sentryID) {
+    console.log(sentryID);
+});
 
 lumberjack.error('Danger, Will Robinson, Danger! This is an error log', {crashReport: 'LostInSpace'});
 ```
