@@ -8,6 +8,6 @@ lumberjack.debug('This is a debug log', {withALittleExtra: 'data!'}, function(bo
     console.log(body);
 });
 
-lumberjack.warn('Warning! This is a warn2 log');
+lumberjack.warn('Warning! This is a warn log');
 
 lumberjack.error('Danger, Will Robinson, Danger! This is an error log', {crashReport: 'LostInSpace'});
