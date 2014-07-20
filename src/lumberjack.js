@@ -132,7 +132,7 @@ LumberJack.prototype.log = function(logLevel, message, extra, callback) {
         sentryBody.extra['Stack Trace'] = (new Error().stack);
   }
 
-  if(this.options.ignoreLevelSentry !== undefined && this.options.ignoreLevelSentry.indexOf(winstonLogLevel) > -1) {
+  if(this.options.ignoreLevelSentry !== undefined && this.options.ignoreLevelSentry.indexOf(logLevel) > -1) {
         return callback(null);
   }
 
